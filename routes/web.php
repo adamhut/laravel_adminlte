@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 
-//Auth::loginUsingId(1);
+Auth::loginUsingId(1);
 Route::get('/', function () {return view('adminlte.pages.login');});
 Route::post('/login', ['as' => 'login', 'uses' => 'UserController@login']);
 

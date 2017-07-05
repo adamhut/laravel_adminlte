@@ -3,8 +3,24 @@
 		<div class="croppie">
 			
 		</div>
+		<div id="upload-wrapper">
+			<button class="btn btn-primary btn-sm" @click="modalVisable=true">
+				<i class="fa fa-upload"></i>Upload Image
+			</button>
+			<div class="Modal" v-if="modalVisable"> 
+				<h4>Upload an Image</h4>
+				<div class="input-file">
+					<input type="file" id="upload-image" @change="setupFileUploader">
+				</div>
+				<button class="btn btn-success" @click="uploadFile">
+					<i class="fa fa-upload"></i> Upload
+				</button>
+				<button class="btn btn-danger" @click="modalVisable=false">
+					<i class="fa fa-times"></i> Cancel
+				</button>
+			</div>
+		</div>
 	</div>
-
 </template>
 
 <script>
@@ -18,11 +34,18 @@
 			return {
 				image:null,
 				croppie:null,
+				modalVisable:false,
 			}
 		},
 		mounted(){
 			this.image = this.imgUrl;
 			this.setupCroppie();
+			this.$on('imageUploaded', function(imageData){
+					console.log('I am here2')
+				this.image = imageData;
+				this.croppie.destory();
+				this.setupCroppie();
+			});
 		},
 		methods:{
 			setupCroppie(){
@@ -41,6 +64,40 @@
 				this.croppie.result('blob').then(function(blob) {
 				    // do something with cropped blob
 				});	
+			},
+			setupFileUploader(e){
+				let files = e.target.files || e.dataTransfer.files
+				if(!files.length)
+				{
+					return;
+				}
+
+				this.createImage(files[0]);
+			},
+			createImage(file)
+			{
+				var image = new Image();
+				var reader = new FileReader();
+				var vm = this;
+				reader.onload  = (e)=>{
+					vm.image = e.target.result;
+					vm.imageUploaded(e.target.result);
+				}
+				reader.readAsDataURL(file)
+			},
+			imageUploaded(imageData){
+				//console.log('I am here2')
+				this.image = imageData;
+				this.croppie.destroy();
+				this.setupCroppie();
+			},
+			uploadFile(){
+				this.croppie.result({
+					type:'canvas',
+					size:'viewport'
+				}).then(response=>{
+					console.log(response);
+				})
 			}
 		}
 	}
