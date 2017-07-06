@@ -96,7 +96,13 @@
 					type:'canvas',
 					size:'viewport'
 				}).then(response=>{
-					console.log(response);
+					//console.log(response);
+					this.image = response;
+					axios.post('/api/v1/image-upload',{
+						img:this.image,
+					}).then(response => {
+						this.modalVisable=false;
+					})
 				})
 			}
 		}

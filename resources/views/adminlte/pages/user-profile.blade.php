@@ -64,7 +64,7 @@
           <!-- /.box-header -->
           <div class="box-body">
             <image-upload
-              img-url="{{Auth::user()->profilePic()}}">
+              img-url="{{auth()->user()->profileUrl()}}">
             </image-upload>
           </div>
           <!-- /.box-body -->

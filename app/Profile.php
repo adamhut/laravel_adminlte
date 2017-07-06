@@ -29,4 +29,17 @@ class Profile extends Model
     {
         $this->attributes['options'] = serialize($value);
     }
+
+
+    public function removeCurrentProfilePic($user=null)
+    {
+        $user = $user?:auth()->user();
+        if(($url = $user->profile->profile_pic) !='')     
+        {
+            $fileName = explode('/', $url);
+            $fileName = $fileName[count($fileName)-1];
+            // /dd($fileName);
+            unlink(public_path('profile_pics/').$fileName);
+        }
+    }
 }

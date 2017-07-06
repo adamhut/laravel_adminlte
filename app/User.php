@@ -39,6 +39,12 @@ class User extends Authenticatable
         return $this->hasOne('App\Profile');
     }
 
+    public function profileUrl()
+    {
+        $url =   $this->profile->profile_pic!='' ? $this->profile->profile_pic:url('adminlte/avatar.png');
+        return $url;
+    }
+
     public function profilePic()
     {
         $profile = Profile::where('user_id', $this->id)->first();
