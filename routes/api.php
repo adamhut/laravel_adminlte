@@ -9,5 +9,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
     Route::post('sidebar-toggle', 'Api\UserApiController@postSidebarToggle');
     Route::post('image-upload', 'Api\UserApiController@postUploadProfilePic');
-    
+    Route::delete('user/{user}', 'ActivationPendingController@destroy');
 });

@@ -8,10 +8,11 @@ require('./bootstrap');
 
 Vue.component('sidebar-collapse', require('./components/SidebarCollapse.vue'));
 Vue.component('image-upload', require('./components/ImageUpload.vue'));
+Vue.component('confirm-modal', require('./components/ConfirmModal.vue'));
 
 const app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello World!'
-  }
+  	el: '#app',
+  	data: {
+    	message: 'Hello World!'
+  	}
 })

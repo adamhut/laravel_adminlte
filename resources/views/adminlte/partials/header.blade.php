@@ -6,7 +6,7 @@
   <title>AdminLTE 2 | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{ url('adminlte/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ url('adminlte/css/font-awesome.min.css') }}">
   <link rel="stylesheet" href="{{ url('adminlte/css/ionicons.min.css') }}">
@@ -21,7 +21,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
+ 
   <script>
     window.Laravel = { csrfToken: '{{ csrf_token() }}' }
   </script>
