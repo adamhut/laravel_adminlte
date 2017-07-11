@@ -18,9 +18,12 @@
 
 <script>
 	export default{
-		props:['endPoint','postData','message','btnClass','btnText'],
+		props:['endPoint','postData','message','btnClass','btnText','method'],
 		created(){
-			this.payload = JSON.parse(this.postData);
+			
+            this.payload = this.postData;
+
+            //this.payload = JSON.parse(this.postData);
 			
 		},
 		data(){
@@ -30,11 +33,14 @@
 			}
 		},
 		methods:{
-			handleConfirmButton(){
-				axios.delete(this.endPoint+'/'+this.payload.id)
-					.then(response=>{
-						this.$emit('onConfirm');
-					});	
+			 handleConfirmButton(){
+				//axios.delete(this.endPoint+'/'+this.payload.id)
+                axios[this.method](this.endPoint+'/'+this.payload.userId)
+                    .then(response=>{
+                        //console.log(response);
+                        this.modalState=false;
+                        this.$emit('onConfirm',this.payload.id);
+                    }); 
 			},
 			handleCloseButton(){
 				this.modalState=false;

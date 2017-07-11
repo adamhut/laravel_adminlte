@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
 
-class ActivationPendingController extends Controller
+class MediaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class ActivationPendingController extends Controller
      */
     public function index()
     {
-        $users = \App\User::all();
-        return view('adminlte.pages.config.user.activation-pending',compact('users'));
+         return view('adminlte.pages.media-manager');
     }
 
     /**
@@ -68,12 +66,9 @@ class ActivationPendingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         //
-        $user->active=1;
-        $user->save();
-         return response(['data'=>'User Activated'],200);
     }
 
     /**
@@ -82,9 +77,8 @@ class ActivationPendingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request , User $user)
+    public function destroy($id)
     {
-        //$user->delete();
-        return response(['data'=>'User deleted'],200);
+        //
     }
 }

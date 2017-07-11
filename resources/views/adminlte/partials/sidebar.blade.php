@@ -1,15 +1,19 @@
 <aside class="main-sidebar">
-  <!-- sidebar: style can be found in sidebar.less -->
-  <section class="sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
     <!-- Sidebar user panel -->
-    <div class="user-panel">
-      <div class="pull-left image">
-        <img src="{{auth()->user()->profileUrl()}}" class="img-circle" alt="User Image">
-      </div>
-      <div class="pull-left info">
-        <p>{{Auth::user()->name}}</p>
-        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-      </div>
+        <div class="user-panel">
+            <div class="pull-left image">
+                <user-image
+                    img-class="img-circle"
+                    src="{{Auth::user()->profilePic()}}"
+                    alt="{{Auth::user()->name}}">
+                </user-image>
+            </div>
+            <div class="pull-left info">
+                <p>{{Auth::user()->name}}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
     </div>
     <!-- search form -->
     <form action="#" method="get" class="sidebar-form">
@@ -24,10 +28,10 @@
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
-      <li class="header">MAIN NAVIGATION</li>
-      <li class="active treeview">
-        <a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
-      </li>
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="active treeview">
+            <a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+        </li>
     </ul>
   </section>
   <!-- /.sidebar -->

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 
-Auth::loginUsingId(1);
+//Auth::loginUsingId(1);
 Route::get('/', function () {
 	
 	$users = \App\User::all();
@@ -26,9 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('user/profile', 'UserController@pageUserProfile')->name('profile');
     Route::post('user/profile',  'UserController@postUpdateProfile')->name('update-profile');
     Route::post('user/password-change', 'UserController@postHandlePasswordChange')->name('change-password');
+    
     Route::get('media-manager', 'MediaController@index')->name('media-manager');
-
-    Route::get('media-manager', 'MediaController@index')->name('media-manager');
-
+    
     Route::get('config/user/activation-pending','ActivationPendingController@index')->name('user-activation-pending');
 });

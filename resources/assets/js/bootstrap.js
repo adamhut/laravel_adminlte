@@ -44,3 +44,11 @@ window.axios.defaults.headers.common = {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+//window.VueSocketio = require('vue-socket.io');
+
+//import VueSocketio from 'vue-socket.io';
+//Vue.use(VueSocketio, 'http://localhost:8890')
+
+//Vue.use(VueSocketio,'http://localhost:8890');
+//Vue.use(VueSocketio,'http://larainferno.dev:8890');

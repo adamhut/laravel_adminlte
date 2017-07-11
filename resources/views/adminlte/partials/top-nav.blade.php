@@ -27,7 +27,11 @@
                 <li><!-- start message -->
                   <a href="#">
                     <div class="pull-left">
-                      <img src="{{url('adminlte/avatar.png')}}" class="img-circle" alt="User Image">
+                        <user-image
+                            img-class="img-circle"
+                            src="{{Auth::user()->profilePic()}}"
+                            alt="{{Auth::user()->name}}">
+                        </user-image>
                     </div>
                     <h4>
                       Support Team
@@ -40,7 +44,11 @@
                 <li>
                   <a href="#">
                     <div class="pull-left">
-                      <img src="{{url('adminlte/avatar.png')}}" class="img-circle" alt="User Image">
+                        <user-image
+                            img-class="img-circle"
+                            src="{{Auth::user()->profilePic()}}"
+                            alt="{{Auth::user()->name}}">
+                        </user-image>
                     </div>
                     <h4>
                       AdminLTE Design Team
@@ -52,7 +60,11 @@
                 <li>
                   <a href="#">
                     <div class="pull-left">
-                      <img src="{{url('adminlte/avatar.png')}}" class="img-circle" alt="User Image">
+                        <user-image
+                            img-class="img-circle"
+                            src="{{Auth::user()->profilePic()}}"
+                            alt="{{Auth::user()->name}}">
+                        </user-image>
                     </div>
                     <h4>
                       Developers
@@ -64,7 +76,11 @@
                 <li>
                   <a href="#">
                     <div class="pull-left">
-                      <img src="{{url('adminlte/avatar.png')}}" class="img-circle" alt="User Image">
+                        <user-image
+                            img-class="img-circle"
+                            src="{{Auth::user()->profilePic()}}"
+                            alt="{{Auth::user()->name}}">
+                        </user-image>
                     </div>
                     <h4>
                       Sales Department
@@ -76,7 +92,11 @@
                 <li>
                   <a href="#">
                     <div class="pull-left">
-                      <img src="{{url('adminlte/avatar.png')}}" class="img-circle" alt="User Image">
+                        <user-image
+                            img-class="img-circle"
+                            src="{{Auth::user()->profilePic()}}"
+                            alt="{{Auth::user()->name}}">
+                        </user-image>
                     </div>
                     <h4>
                       Reviewers
@@ -209,18 +229,26 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="{{route('profile')}}" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="{{url('adminlte/avatar.png')}}" class="user-image" alt="User Image">
+                <user-image
+                    img-class="img-circle user-image"
+                    src="{{Auth::user()->profilePic()}}"
+                    alt="{{Auth::user()->name}}">
+                </user-image>
             <span class="hidden-xs">{{Auth::user()->name}}</span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img src="{{url('adminlte/avatar.png')}}" class="img-circle" alt="User Image">
+                <user-image
+                    img-class="img-circle"
+                    src="{{Auth::user()->profilePic()}}"
+                    alt="{{Auth::user()->name}}">
+                </user-image>
 
-              <p>
-                {{Auth::user()->name}} - {{Auth::user()->profile->designation}}
-                <small>Member since Nov. 2012</small>
-              </p>
+                <p>
+                    {{Auth::user()->name}} - {{Auth::user()->profile->designation}}
+                    <small>Member since Nov. 2012</small>
+                </p>
             </li>
             <!-- Menu Body -->
             <li class="user-body">
@@ -242,12 +270,12 @@
               <div class="pull-left">
                 <a href="#" class="btn btn-default btn-flat">Profile</a>
               </div>
-              <div class="pull-right">
-                <a href="javascript:void(0);" onclick="document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sign out</a>
-                <form action="{{route('logout')}}" method="post" id="logout-form" style="display: none;">
-                  {{csrf_field()}}
-                </form>
-              </div>
+                <div class="pull-right">
+                    <a href="javascript:void(0);" onclick="document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sign out</a>
+                    <form action="{{route('logout')}}" method="post" id="logout-form" style="display: none;">
+                        {{csrf_field()}}
+                    </form>
+                </div>
             </li>
           </ul>
         </li>

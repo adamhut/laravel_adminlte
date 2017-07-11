@@ -38,7 +38,9 @@ class UserController extends Controller
 
     public function pageDashboard()
     {
-        return view('adminlte.pages.dashboard');
+        $dashboardData['activation_pending']=2;
+        $dashboardData['my_recent_activities']=10;
+        return view('adminlte.pages.dashboard',compact('dashboardData'));
     }
     
     /**

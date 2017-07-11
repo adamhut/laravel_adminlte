@@ -8,11 +8,21 @@ require('./bootstrap');
 
 Vue.component('sidebar-collapse', require('./components/SidebarCollapse.vue'));
 Vue.component('image-upload', require('./components/ImageUpload.vue'));
-Vue.component('confirm-modal', require('./components/ConfirmModal.vue'));
+
+Vue.component('info-box', require('./components/InfoBox.vue'));
+Vue.component('media-manager', require('./components/MediaManager.vue'));
+Vue.component('user-image', require('./components/UserImage.vue'));
+Vue.component('user-activation', require('./components/UserActivation.vue'));
 
 const app = new Vue({
   	el: '#app',
   	data: {
     	message: 'Hello World!'
+  	},
+  	methods:{
+  		handleConfirmSuccess(){
+
+  		}
   	}
+
 })
