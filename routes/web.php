@@ -28,4 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('media-manager', 'MediaController@index')->name('media-manager');
     
     Route::get('config/user/activation-pending','ActivationPendingController@index')->name('user-activation-pending');
+
+    Route::get('config/user/import', 'AdminController@importUser')->name('import-user');
+    Route::post('config/user/import', 'AdminController@handleImportUser')->name('bulk-import-user');
 });
