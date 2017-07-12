@@ -47,8 +47,8 @@ window.axios.defaults.headers.common = {
 
 //window.VueSocketio = require('vue-socket.io');
 
-//import VueSocketio from 'vue-socket.io';
-//Vue.use(VueSocketio, 'http://localhost:8890')
+import VueSocketio from 'vue-socket.io';
+Vue.use(VueSocketio, 'http://localhost:8890')
 
 //Vue.use(VueSocketio,'http://localhost:8890');
 //Vue.use(VueSocketio,'http://larainferno.dev:8890');

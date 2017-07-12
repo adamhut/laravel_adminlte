@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 
-//Auth::loginUsingId(1);
+Auth::loginUsingId(1);
 Route::get('/', function () {
 	
 	$users = \App\User::all();
@@ -11,9 +11,7 @@ Route::get('/', function () {
 });
 
 
-
 Route::post('/login', ['as' => 'login', 'uses' => 'UserController@login']);
-
 
 Route::post('forgot-password/send',  'UserController@postForgotPassword')->name('forgot-password-send');
 Route::get('forgot-password/set/{token}', 'UserController@getSetForgotPassword')->name('set-forgot-password');
