@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\TempTable;
 use Illuminate\Http\Request;
 use App\Services\User\UserImport;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -34,9 +36,9 @@ class AdminController extends Controller
 
     	if($validator->fails())
     	{
-    		return rediret()->back()->withErrors($validator);
+    		return redirect()->back()->withErrors($validator);
     	}
-    	
+
     	$file  = $request->file('file');
     	
     	$csvData = file_get_contents($file);
@@ -47,27 +49,91 @@ class AdminController extends Controller
     	if(!$userImport->checkImportData($rows,$headers))
     	{
     		$request->session()->flash('error_rows',$userImport->getErrorRows());
+    		$request->session()->flash('valid_rows',$userImport->getValidRows());
+
+    		$request->session()->flash('error_rows_id',$userImport->getErrorRowsId());
+    		$request->session()->flash('valid_rows_id',$userImport->getValidRowsId());
+            
+
     		flash()->error('Error in data,Please correct it');
     		return redirect()->back();
     	}
-    	$userImport->createUsers();
-    	/*
-    	$collection = collect($rows);
-    	$headers = collect($collection->shift());
+
     	
-    	$collection->each(function($item ,$key) use($headers){
-    		$record  = $headers->combine($item);
-    		$record->put('password',bcrypt('test0000'));
-    		$record->put('active',0);
-    		User::create($record->toArray());
-    	});
-		*/
+    	
     	flash('User are Imported');
     	return redirect()->back();
-    	/*
-    	$this->validate($request,[
-    		'file' =>'required|file'
-    	]);
-    	*/
+    }
+
+
+    public function getImportData($uuid)
+    {
+        //$data = TempTable::where('uuid',$uuid)->firstOrFail();
+        $filePath=public_path('download');
+        //
+        $data = TempTable::where('uuid',$uuid)
+            ->where('user_id',auth()->id())
+            ->first();
+
+        if(!$data)
+        {
+            abort(400,'Can not find or Access Denied');
+        }
+
+        $data = collect(unserialize($data->data))->values(0)->toArray();
+
+        $header = [];
+        foreach($data[0] as $key=>$val)
+        {
+            $header[] = $key;
+        }
+
+        if(!file_exists($filePath)) 
+        {
+            mkdir($filePath ,755 , true);
+        }
+
+        $filename = time().'.csv';
+        $handle= fopen($filePath.'/'.$filename,'w+');
+
+        fputcsv($handle,$header);
+        foreach($data as $row)
+        {
+             fputcsv($handle,$row);
+        }
+
+        $headers = [
+            'Content-Type' =>'text/csv'
+        ];
+
+        return Response::download($filePath.'/'.$filename,$filename,$headers);
+
+    }
+
+    public function PersistIncompleteData($uuid,UserImport $userImport)
+    {
+        $data = TempTable::where('uuid',$uuid)
+            ->where('user_id',auth()->id())
+            ->firstOrFail();
+
+        if(!$data)
+        {
+            abort(400,'Can not find or Access Denied');
+        }
+
+        $rows = collect(unserialize($data->data))->values(0)->toArray();
+        //$data = collect(unserialize($data->data))->values(0);
+        
+        $headers = [];
+        
+        foreach($rows[0] as $key=>$val)
+        {
+            $headers[] = $key;
+        }
+
+        $userImport->createUsers($rows,$headers);
+        $data->delete();
+        flash('Users imported');
+        return redirect()->back();
     }
 }

@@ -21,7 +21,6 @@ class User extends Authenticatable
         'name', 'email', 'password', 'active',
     ];
 
-
     protected $presenter = UserPresenter::class;
 
 
@@ -55,5 +54,6 @@ class User extends Authenticatable
         }
     }
 
+    
     
 }
