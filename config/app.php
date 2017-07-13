@@ -181,7 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
-        Plank\Mediable\MediableServiceProvider::class,
+        //Plank\Mediable\MediableServiceProvider::class,
     ],
 
     /*
@@ -232,7 +232,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Image' => Intervention\Image\Facades\Image::class,
-        'MediaUploader' => Plank\Mediable\MediaUploaderFacade::class,
+        //'MediaUploader' => Plank\Mediable\MediaUploaderFacade::class,
+         'Uuid' => Webpatser\Uuid\Uuid::class,
 
     ],
 
