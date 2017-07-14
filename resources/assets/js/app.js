@@ -13,6 +13,11 @@ Vue.component('info-box', require('./components/InfoBox.vue'));
 Vue.component('media-manager', require('./components/MediaManager.vue'));
 Vue.component('user-image', require('./components/UserImage.vue'));
 Vue.component('user-activation', require('./components/UserActivation.vue'));
+Vue.component('activity-graph', require('./components/ActivityGraph/ActivityGraph.vue'));
+
+Vue.component('single-image-upload', require('./components/SingleImageUpload.vue'));
+
+Vue.component('import-users', require('./components/UserImport/ImportUsers.vue'));
 
 const app = new Vue({
   	el: '#app',

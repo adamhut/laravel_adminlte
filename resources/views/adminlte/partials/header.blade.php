@@ -24,5 +24,6 @@
  
   <script>
     window.Laravel = { csrfToken: '{{ csrf_token() }}' }
+    window.adminlte = { host: '{{ url("/") }}/' }
   </script>
 </head>

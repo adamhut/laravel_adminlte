@@ -1,0 +1,36 @@
+<template>
+	<div class="ActivityGraphWrapper">
+	  	<div class="box box-primary">
+	    	<div class="box-header with-border">
+	      		<h3 class="box-title">Activity data</h3>
+	    	</div>
+	    	<!-- /.box-header -->
+	    	<div class="box-body">
+	      		<div class="row">
+	        		<div class="col-md-8">
+	          			<line-chart></line-chart>
+	        		</div>
+	        		<div class="col-md-4">
+	          			<p>Data points</p>
+	        		</div>
+	      		</div>
+	    	</div>
+	    	<!-- /.box-body -->
+	  	</div>
+	</div>
+</template>
+
+<script>
+	import LineChart from './LineChart';
+	export default{
+		components:{
+			'line-chart':LineChart,
+		},
+		data(){
+			return{
+
+			}
+		},
+
+	}
+</script>

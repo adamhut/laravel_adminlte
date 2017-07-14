@@ -43,11 +43,16 @@
 
         <div class="col-sm-9">
             @if($uuid = Session::get('error_rows_id'))
-                 <a href="{{route('get-import-data',$uuid)}}" class="btn btn-warning">Download Valid Rows</a>
+                <div class="mb-10">
+                <a href="{{route('get-import-data',$uuid)}}" class="btn btn-warning">Download Invalid Rows</a>
+                </div>
             @endif
 
             @if($uuid = Session::get('valid_rows_id'))
-                <a href="{{route('persist-incomplete-data',$uuid)}}" class="btn btn-success">Persist Valid Rows</a>
+                {{--<a href="{{route('persist-incomplete-data',$uuid)}}" class="btn btn-success">Persist Valid Rows</a>--}}
+                <div class="mb-10">
+                <import-users url="{{route('persist-incomplete-data',$uuid)}}"></import-users>
+                </div>
             @endif
             {{--
             @if($rows = Session::get('valid_rows') )

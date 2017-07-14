@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redis;
+use App\Repositories\Dashboard\DashboardRepository;
 
 class UserApiController extends Controller
 {
@@ -62,6 +63,24 @@ class UserApiController extends Controller
         }
         return back();
 
+    }
+
+    public function getUserWatchdogEntries(DashboardRepository $repository)
+    {
+        $userId = request()->user()->id;
+        $userActivity = $repository->userLastWeekActivities($userId);
+        $labels = [];
+        $rows =[];
+        foreach($userActivity as $value)
+        {
+            $labels[] = $value->reportDate;
+            $rows[] = $value->count;
+        }
+        $data = [
+            'labels' => $labels,
+            'rows' => $rows,
+        ];
+        return response()->json(['data'=> $data],200);
     }
 
 }

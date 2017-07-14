@@ -15,4 +15,10 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
     Route::get('get-media', 'Api\MediaUploadController@index');
     Route::post('media-upload', 'Api\MediaUploadController@store');
 
+    Route::get('watchdog-entries', 'Api\UserApiController@getUserWatchdogEntries');
+
+    //Route::get('persist-users/{uuid}' );
+    Route::get('persist-import/{uuid}', 'Api\AdminApiController@PersistIncompleteData')->name('persist-incomplete-data');
+
+    
 });

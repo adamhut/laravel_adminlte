@@ -12,32 +12,50 @@
 @endsection
 
 @section('content')
-  <div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <info-box
-        text="Act. Pending"
-        number="{{$dashboardData['activation_pending']}}"
-        color="bg-red"
-        icon="fa-hourglass"
-      ></info-box>
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <info-box
+                text="Act. Pending"
+                number="{{$dashboardData['activation_pending']}}"
+                color="bg-red"
+                icon="fa-hourglass"
+            >
+            </info-box>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <info-box
+                text="My activities"
+                number="{{$dashboardData['my_recent_activities']}}"
+                color="bg-green"
+                icon="fa-line-chart"
+            >
+            </info-box>
+        </div>
     </div>
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <info-box
-        text="My activities"
-        number="{{$dashboardData['my_recent_activities']}}"
-        color="bg-green"
-        icon="fa-line-chart"
-      ></info-box>
+    {{--End first row--}}
+	
+    <div class="row">
+        <div class="col-sm-12">
+            <activity-graph></activity-graph>
+        </div>
     </div>
-  </div>
-  {{--End first row--}}
-	{{--
-  <div class="row">
-    <div class="col-sm-12">
-      <activity-graph></activity-graph>
+  
+    <div class="row">
+        <div class="col-sm-6">
+            <form action="{{route('test-upload-image')}}" method="post" enctype="multipart/form-data">
+                {{csrf_field()}}
+                <div class="form-group">
+                    <single-image-upload></single-image-upload>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">
+                        <i class="fa fa-upload"></i> Upload
+                    </button>
+                </div>
+            </form>
+        </div> 
     </div>
-  </div>
-  --}}
-  {{--End second row--}}
-  <p>@{{ message }}</p>
+
+    {{--End second row--}}
+ 
 @endsection

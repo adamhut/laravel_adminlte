@@ -1,6 +1,7 @@
 
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import "~sweetalert2/dist/sweetalert2.css";
 
 // Variables
 @import "variables";
@@ -10,7 +11,9 @@
 		color: $danger-color;
 	}
 }
-
 .mr-1{
 	margin-right:5px;
+}
+.mr-10{
+	margin-right:50px;
 }
