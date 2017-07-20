@@ -47,4 +47,20 @@ class AdminApiController extends Controller
         //flash('Users imported');
         //return redirect()->back();
     }
+
+    public function editWrongUsers ($uuid)
+    {
+    	$data = TempTable::where('uuid',$uuid)
+            ->where('user_id',auth()->id())
+            ->firstOrFail();
+
+        if(!$data)
+        {
+        	return response('can not find the data or access denied',400);
+        }
+        $data =unserialize($data->data);
+        return response($data,200);
+        //$rows = collect(unserialize($data->data))->values(0)->toArray();	
+    }
+
 }

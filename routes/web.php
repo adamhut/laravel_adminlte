@@ -33,6 +33,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('config/user/import', 'AdminController@handleImportUser')->name('bulk-import-user');
     Route::get('config/user/import/get-data/{uuid}', 'AdminController@getImportData')->name('get-import-data');
     //Route::get('config/user/import/persist/{uuid}', 'AdminController@PersistIncompleteData')->name('persist-incomplete-data');
+    //
+    //TODO Need to implement
+    Route::get('config/user/roles', 'AdminController@getManageRoles')->name('manage-roles');
+    Route::post('config/user/role-save', 'AdminController@postSaveRoles')->name('save-role');
+    Route::get('config/user/permissions', ['as' => 'manage-permissions', 'uses' => 'AdminController@getManagePermission']);
+    Route::post('config/user/permission-save', ['as' => 'save-permission', 'uses' => 'AdminController@postSavePermission']);
+    Route::get('config/user/permission/{id}', ['as' => 'edit-permission', 'uses' => 'AdminController@getEditPermission']);
+    Route::post('config/user/permission/update', ['as' => 'update-permission', 'uses' => 'AdminController@postUpdatePermission']);
+
+    Route::get('config/system/my-activities', ['as' => 'my-activities', 'uses' => 'UserController@pageMyActivities']);
 });
 
 

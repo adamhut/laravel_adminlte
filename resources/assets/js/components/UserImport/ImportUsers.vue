@@ -15,8 +15,8 @@
 		},
 		methods:{
 			importUser(){
-				swal('Success','hello','success');;
-				return
+				//swal('Success','hello','success');;
+				//return;
 				this.message = null;
 				axios.get(this.url)
 					.then(response=>{

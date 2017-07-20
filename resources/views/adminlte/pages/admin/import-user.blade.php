@@ -44,7 +44,11 @@
         <div class="col-sm-9">
             @if($uuid = Session::get('error_rows_id'))
                 <div class="mb-10">
-                <a href="{{route('get-import-data',$uuid)}}" class="btn btn-warning">Download Invalid Rows</a>
+                    <a href="{{route('get-import-data',$uuid)}}" class="btn btn-warning">Download Invalid Rows</a>
+                   
+                </div>
+                <div class="mb-10">
+                    <edit-users url="{{route('edit-wrong-user',$uuid)}}"></edit-users >
                 </div>
             @endif
 

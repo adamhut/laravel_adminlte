@@ -19,6 +19,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
 
     //Route::get('persist-users/{uuid}' );
     Route::get('persist-import/{uuid}', 'Api\AdminApiController@PersistIncompleteData')->name('persist-incomplete-data');
+    Route::get('edit-users/{uuid}', 'Api\AdminApiController@editWrongUsers')->name('edit-wrong-user');
 
     
 });

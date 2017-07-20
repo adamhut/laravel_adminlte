@@ -19,6 +19,8 @@ Vue.component('single-image-upload', require('./components/SingleImageUpload.vue
 
 Vue.component('import-users', require('./components/UserImport/ImportUsers.vue'));
 
+Vue.component('edit-users', require('./components/UserImport/EditUsers.vue'));
+
 const app = new Vue({
   	el: '#app',
   	data: {
@@ -30,4 +32,6 @@ const app = new Vue({
   		}
   	}
 
-})
+});
+
+$('ul.sidebar-menu').tree(options)

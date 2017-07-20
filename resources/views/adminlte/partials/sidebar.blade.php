@@ -27,11 +27,69 @@
     </form>
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
-    <ul class="sidebar-menu">
+    <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active treeview">
-            <a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+        <li class="{{ Request::is('dashboard') ? 'active' : ''  }} treeview">
+            <a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
         </li>
+
+        <li class="{{ Request::is('media-manager') ? 'active' : ''  }} treeview">
+            <a href="{{route('media-manager')}}"><i class="fa fa-picture-o"></i><span>Media Manager</span></a>
+        </li>
+
+
+        
+        <li class="{{ Request::is('config/user/*') ? 'active' : ''  }} treeview">
+            <a href="#">
+                <i class="fa fa-user"></i> <span>Users and Roles</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li class="{{ Request::is('config/user/import') ? 'active' : ''  }}">
+                    <a href="{{route('import-user')}}"><i class="fa fa-circle-o"></i> Import Users</a>
+                </li>
+                <li class="{{ Request::is('config/user/roles') ? 'active' : ''  }}">
+                    <a href="{{route('manage-roles')}}"><i class="fa fa-circle-o"></i> Manage Roles</a>
+                </li>
+                <li class="{{ Request::is('config/user/permissions') ? 'active' : ''  }}">
+                    <a href="{{route('manage-permissions')}}"><i class="fa fa-circle-o"></i> Manage Permissions</a>
+                </li>
+               {{-- 
+                @if(\Setting::get('user_can_register'))
+                <li class="{{ Request::is('config/user/activation-pending') ? 'active' : ''  }}">
+                    <a href="{{route('user-activation-pending')}}"><i class="fa fa-circle-o"></i> Activation pending</a>
+                </li>
+                @endif
+                --}}
+            </ul>
+        </li>
+        @role('admin')
+        @endrole
+
+        <li class="{{ Request::is('config/system/*') ? 'active' : ''  }} treeview">
+        <a href="#">
+          <i class="fa fa-gear"></i> <span>Configuration</span>
+          <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+          {{--<li class="{{ Request::is('config/system/my-activities') ? 'active' : ''  }}">--}}
+          <li class="">
+            <a href="{{route('my-activities')}}"><i class="fa fa-circle-o"></i> My Activities</a>
+          </li>
+          @role('admin')
+            <li class="{{ Request::is('config/system/activities') ? 'active' : ''  }}">
+              <a href="{{route('activities')}}"><i class="fa fa-circle-o"></i> Activities</a>
+            </li>
+            <li class="{{ Request::is('config/system/settings') ? 'active' : ''  }}">
+              <a href="{{route('settings')}}"><i class="fa fa-circle-o"></i> Settings</a>
+            </li>
+          @endrole
+        </ul>
+      </li>
     </ul>
   </section>
   <!-- /.sidebar -->
