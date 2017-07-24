@@ -34,4 +34,4 @@ const app = new Vue({
 
 });
 
-$('ul.sidebar-menu').tree(options)
+$('ul.sidebar-menu').tree()

@@ -9,6 +9,9 @@ use App\Services\User\UserImport;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 class AdminController extends Controller
 {
     
@@ -136,4 +139,18 @@ class AdminController extends Controller
         flash('Users imported');
         return redirect()->back();
     }
+
+
+    /***Manager Role Part***/
+    /**
+     * Get the page to see the list of roles and also the form to add a new role.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getManageRoles()
+    {
+        $roles = Role::orderBy('id', 'asc')->paginate(10);
+        return view('adminlte.pages.admin.manage-roles', compact('roles'));
+    }
+
 }

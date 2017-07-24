@@ -38,7 +38,7 @@
         </li>
 
 
-        
+        @role('admin')
         <li class="{{ Request::is('config/user/*') ? 'active' : ''  }} treeview">
             <a href="#">
                 <i class="fa fa-user"></i> <span>Users and Roles</span>
@@ -65,7 +65,7 @@
                 --}}
             </ul>
         </li>
-        @role('admin')
+        
         @endrole
 
         <li class="{{ Request::is('config/system/*') ? 'active' : ''  }} treeview">
